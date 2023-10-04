@@ -20,10 +20,9 @@ app.use(cors({ origin: ["https://opwngrid.xyz","https://api.opwngrid.xyz"] }));
 require("./routes/static_routes.js")(app);
 
 // handle exits
+// TODO: Handle this appropriately on other places aswell, ideally also on all the places we make connections (so we can close them)
 process.on("SIGINT", function() {
-    connection.end(function(err) {
-        process.exit(err ? 1 : 0);
-    });
+    process.exit(err ? 1 : 0);
 });
 
 // start the app

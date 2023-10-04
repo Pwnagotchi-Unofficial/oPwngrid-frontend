@@ -1,0 +1,30 @@
+{
+  "name": "opwngrid-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint .",
+    "lint-fix": "npx eslint . --fix",
+    "run": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rai68/oPwngrid-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rai68/oPwngrid-frontend/issues"
+  },
+  "homepage": "https://github.com/rai68/oPwngrid-frontend#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0"
+  }
+}

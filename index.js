@@ -15,7 +15,7 @@ function log(req, res, next) {
 }
 
 app.use(log);
-app.use(cors({ origin: "https://opwngrid.xyz" }));
+app.use(cors({ origin: ["https://opwngrid.xyz","https://api.opwngrid.xyz"] }));
 
 require("./routes/static_routes.js")(app);
 

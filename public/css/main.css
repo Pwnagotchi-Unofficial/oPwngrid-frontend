@@ -4,15 +4,6 @@ body {
     font-family: "Roboto", sans-serif !important;
 }
 
-#contactStringID {
-    color: white;
-    background-color:rgb(33,37,41);
-    border: 10px;
-    border-style: solid;
-    left: 10px;
-    border-color: rgb(33,37,41);
-}
-
 .container {
     margin-top: 2rem;
 }

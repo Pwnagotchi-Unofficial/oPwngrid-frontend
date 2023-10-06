@@ -83,6 +83,8 @@
 
                             document.getElementById("createdAt").innerText =
                                 `${timeDifference(timeNow, MsCreatedAt)}`;
+                                document.getElementById("updatedAt").innerText =
+                                `${timeDifference(timeNow, MsUpdatedAt)}`;
                             document.getElementById("countryOfOrigin").innerText =
                                 `${regionNames.of(data.country)}`;
                             document.getElementById("pwnedNetworks").innerText = `${data.amount}`;
@@ -170,6 +172,9 @@
                             Created at
                         </th>
                         <th>
+                            Updated at
+                        </th>
+                        <th>
                             Country of origin
                         </th>
                         <th>
@@ -186,6 +191,7 @@
                 <tbody>
                     <tr>
                         <td id="createdAt"></td>
+                        <td id="updatedAt"></td>
                         <td id="countryOfOrigin"></td>
                         <td id="pwnedNetworks"></td>
                         <td id="aiEpochsLived">Not available</td>

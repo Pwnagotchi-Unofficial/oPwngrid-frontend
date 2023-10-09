@@ -68,7 +68,7 @@
                     type: 'region'
                 });
                 let recentDiv = document.getElementById("recent");
-                for (let i = 0; i <= data3.length; i++) {
+                for (let i = 0; i <= data3.length - 1; i++) {
                     let dateCreated = new Date(data3[i].created_at);
 
                     dateCreated.toLocaleString('default', {

@@ -20,7 +20,7 @@
 
             $.get("https://api.opwngrid.xyz/api/v1/total/aps", function (data2) {
                 document.getElementById("totalApsReported").innerText = `${data2.total} APs reported in total`;
-                console.log(data2)
+                //console.log(data2)
             });
 
             $.get("https://api.opwngrid.xyz/api/statistics/leaders?units=100", function (data) {
@@ -58,7 +58,7 @@
 
                     colour.push("#" + element.identity.slice(0, 3) + element.identity.slice(-3))
                 });
-                console.log(colour)
+                //console.log(colour)
                 new Chart(LeadersChart, {
                     type: 'bar',
                     data: {

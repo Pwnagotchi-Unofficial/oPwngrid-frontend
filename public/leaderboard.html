@@ -24,27 +24,25 @@
             });
 
             $.get("https://api.opwngrid.xyz/api/statistics/leaders?units=100", function (data) {
-                let pos = 1
                 for (let i = 0; i < 3; i++) {
                     //data[i].data = JSON.parse(data[i].data)
-                    let leaderDiv = document.getElementById("leaders");
+                    let leaderList = document.getElementById("leaders");
                     let regionNames = new Intl.DisplayNames(['en'], {
                         type: 'region'
                     });
 
-                    let h3 = document.createElement("h3")
+                    let leaderListItem = document.createElement("li")
                     let aHref = `<a href="/search/${data[i].identity}">${data[i].name}</a>`
 
                     if (data[i].data && data[i].data.advertisement) {
-                        h3.innerHTML =
-                            `${pos}. ${data[i].data.advertisement.face} ${aHref} has a total of ${data[i].amount} reported APs from the country of ${regionNames.of(data[i].country)}` //create string format of recently added devices
-                        leaderDiv.appendChild(h3)
+                        leaderListItem.innerHTML =
+                            `${data[i].data.advertisement.face} <b> ${aHref} </b> from <i> ${regionNames.of(data[i].country)} </i> has a total of <b> ${data[i].amount} </b> reported APs` //create string format of recently added devices
+                        leaderList.appendChild(leaderListItem)
                     } else {
-                        h3.innerHTML =
-                            `${pos}. ${aHref} has a total of ${data[i].amount} reported APs from the country of ${regionNames.of(data[i].country)}` //create string format of recently added devices
-                        leaderDiv.appendChild(h3)
+                        leaderListItem.innerHTML =
+                            `<b> ${aHref} </b> from <i> ${regionNames.of(data[i].country)} </i> has a total of <b> ${data[i].amount} </b> reported APs` //create string format of recently added devices
+                        leaderList.appendChild(leaderListItem)
                     }
-                    pos++;
                 }
             });
 
@@ -130,6 +128,14 @@
                 <h1>
                     Top 3 units with the most reports
                 </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <ol id="leaders">
+
+                </ol>
             </div>
         </div>
 

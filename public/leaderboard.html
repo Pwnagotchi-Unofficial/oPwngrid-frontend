@@ -23,7 +23,7 @@
                 //console.log(data2)
             });
 
-            $.get("https://api.opwngrid.xyz/api/statistics/leaders?units=100", function (data) {
+            $.get("https://api.opwngrid.xyz/api/statistics/leaders?units=3", function (data) {
                 for (let i = 0; i < 3; i++) {
                     //data[i].data = JSON.parse(data[i].data)
                     let leaderList = document.getElementById("leaders");
@@ -46,7 +46,7 @@
                 }
             });
 
-            $.get(`https://api.opwngrid.xyz/api/statistics/leaders?days=100`, function (data) {
+            $.get(`https://api.opwngrid.xyz/api/statistics/leaders?units=100`, function (data) {
                 const LeadersChart = document.getElementById('LeadersChart');
                 //FORMAT DATA
                 unit = []

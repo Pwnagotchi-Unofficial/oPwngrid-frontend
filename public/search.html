@@ -98,6 +98,7 @@
                                 `${data.data.brain.epochs_lived}`;
                             document.getElementById("aiEpochsTrained").innerText =
                                 `${data.data.brain.epochs_trained}`;
+
                         } if (data.data.session) {
                             //set session data
                             document.getElementById("duration").innerText =
@@ -118,8 +119,8 @@
                                 `${data.data.session.avg_reward}`;
 
 
-
-                        } else {
+                        }
+                        
                             let dateCreated = new Date(data.created_at);
 
                             let MsCreatedAt = dateCreated.getTime()

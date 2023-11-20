@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <title>oPwngrid: Search</title>
-    <meta charset="UTF-8">
+    <head>
+        <title>oPwngrid: Search</title>
+        <meta charset="UTF-8">
 
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous">
     </script>
-    
-    <script>
+
+        <script>
         function timeDifference(current, previous) {
             var msPerMinute = 60 * 1000;
             var msPerHour = msPerMinute * 60;
@@ -92,6 +98,27 @@
                                 `${data.data.brain.epochs_lived}`;
                             document.getElementById("aiEpochsTrained").innerText =
                                 `${data.data.brain.epochs_trained}`;
+                        } if (data.session) {
+                            //set session data
+                            document.getElementById("duration").innerText =
+                                `${data.data.session.duration}`;
+                            document.getElementById("peers").innerText =
+                                `${data.data.session.peers}`;
+                            document.getElementById("associated").innerText =
+                                `${data.data.session.associated}`;
+                            document.getElementById("deauthed").innerText = 
+                                `${data.data.session.deauthed}`;
+                            document.getElementById("handshakes").innerText =
+                                `${data.data.session.handshakes}`;
+                            document.getElementById("min_reward").innerText =
+                                `${data.data.session.min_reward}`;
+                            document.getElementById("max_reward").innerText =
+                                `${data.data.session.max_reward}`;
+                            document.getElementById("avg_reward").innerText =
+                                `${data.data.session.avg_reward}`;
+
+
+
                         } else {
                             let dateCreated = new Date(data.created_at);
 
@@ -105,6 +132,19 @@
                             document.getElementById("countryOfOrigin").innerText =
                                 `${regionNames.of(data.country)}`;
                             document.getElementById("pwnedNetworks").innerText = `${data.amount}`;
+
+                            //build data
+                            document.getElementById("version").innerText =
+                                `${data.data.version}`;
+                            if (data.data.build) {
+                                document.getElementById("build").innerText =
+                                    `${data.data.build}`;
+                            }
+                            if (data.data.uname) {
+                                document.getElementById("uname").innerText =
+                                    `${data.data.uname}`;
+                            }
+
                         }
                         document.getElementById("contactStringID").innerHTML = `${data.identity}`
                     } else {
@@ -115,111 +155,184 @@
         });
     </script>
 
-</head>
+    </head>
 
-<body id="body">
-    <!-- Top navbar -->
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">oPwngrid</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/convert">Convert</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/search/">Search</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/leaderboard">Leaderboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/statistics">Statistics</a>
-                    </li>
-                </ul>
-            </div>
-            <form id="search-form" class="form-inline" style="margin-block-end: 0em;">
-                <div class="input-group">
-                    <input type="text" id="search-input" class="form-control" placeholder="Search by fingerprint...">
-                    <button type="button" id="search-button" class="btn btn-primary">Search</button>
+    <body id="body">
+        <!-- Top navbar -->
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">oPwngrid</a>
+                <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/convert">Convert</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page"
+                                href="/search/">Search</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/leaderboard">Leaderboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/statistics">Statistics</a>
+                        </li>
+                    </ul>
                 </div>
-            </form>
-        </div>
-    </nav>
-
-    <!-- Main content container -->
-    <div class="container" id="container" style="margin-top: 2rem;">
-        <!-- First row, just the username and if available, his face -->
-        <div class="row">
-            <div class="col">
-                <h1 id="userStringName"></h1>
+                <form id="search-form" class="form-inline"
+                    style="margin-block-end: 0em;">
+                    <div class="input-group">
+                        <input type="text" id="search-input"
+                            class="form-control"
+                            placeholder="Search by fingerprint...">
+                        <button type="button" id="search-button"
+                            class="btn btn-primary">Search</button>
+                    </div>
+                </form>
             </div>
-        </div>
+        </nav>
 
-        <!-- Second row, table with details -->
-        <div class="row">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                            Created at
-                        </th>
-                        <th>
-                            Updated at
-                        </th>
-                        <th>
-                            Country of origin
-                        </th>
-                        <th>
-                            Pwned networks
-                        </th>
-                        <th>
-                            AI - Epochs lived
-                        </th>
-                        <th>
-                            AI - Epochs trained
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td id="createdAt"></td>
-                        <td id="updatedAt"></td>
-                        <td id="countryOfOrigin"></td>
-                        <td id="pwnedNetworks"></td>
-                        <td id="aiEpochsLived">Not available</td>
-                        <td id="aiEpochsTrained">Not available</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Thirs row, contact card -->
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        Contact info
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">You can contact this Pwnagotchi at</h5>
-                        <pre class="card-text" id="contactStringID"></pre>
-                    </div>
+        <!-- Main content container -->
+        <div class="container" id="container" style="margin-top: 2rem;">
+            <!-- First row, just the username and if available, his face -->
+            <div class="row">
+                <div class="col">
+                    <h1 id="userStringName"></h1>
                 </div>
             </div>
-        </div>
-    </div>
 
-</body>
-<footer>
-    <script>
+            <!-- Second row, table with details -->
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Created at
+                            </th>
+                            <th>
+                                Updated at
+                            </th>
+                            <th>
+                                Country of origin
+                            </th>
+                            <th>
+                                Pwned networks
+                            </th>
+                            <th>
+                                AI - Epochs lived
+                            </th>
+                            <th>
+                                AI - Epochs trained
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="createdAt"></td>
+                            <td id="updatedAt"></td>
+                            <td id="countryOfOrigin"></td>
+                            <td id="pwnedNetworks"></td>
+                            <td id="aiEpochsLived">Not available</td>
+                            <td id="aiEpochsTrained">Not available</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- forth row, table with last session -->
+            <div class="row" style="top:10px;">
+                <div id="session">
+                    <h3>Last Session</h3>
+                    <table width="100%" class="table">
+                        <tbody>
+                            <tr>
+                                <th width="20%">Duration</th>
+                                <td id="duration">00:00:00</td>
+                            </tr>
+                            <tr>
+                                <th>Peers Met</th>
+                                <td id="peers">0</td>
+                            </tr>
+                            <tr>
+                                <th>Associations</th>
+                                <td id="associated">0</td>
+                            </tr>
+                            <tr>
+                                <th>Deauths</th>
+                                <td id="deauthed">0</td>
+                            </tr>
+                            <tr>
+                                <th>Handshakes</th>
+                                <td id="handshakes">0</td>
+                            </tr>
+                            <tr>
+                                <th>Min Reward</th>
+                                <td id="min_reward">0.0</td>
+                            </tr>
+                            <tr>
+                                <th>Max Reward</th>
+                                <td id="max_reward">0.0</td>
+                            </tr>
+                            <tr>
+                                <th>Average Reward</th>
+                                <td id="avg_reward">0.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Thirs row, contact card -->
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-header">
+                            Contact info
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">You can contact this
+                                Pwnagotchi at</h5>
+                            <pre class="card-text" id="contactStringID"></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1></h1>
+            <!-- forth row, table with build info -->
+            <div class="row build-info" style>
+                <div id="session">
+                    <h4>Build Info</h4>
+                    <table width="100%" class="table">
+                        <tbody>
+                            <tr>
+                                <th width="20%">Version</th>
+                                <td id="version">0.0.0</td>
+                            </tr>
+                            <tr>
+                                <th>Build</th>
+                                <td id="build">Not available</td>
+                            </tr>
+                            <tr>
+                                <th>uname</th>
+                                <td id="uname">Not available</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </body>
+        <footer>
+            <script>
         // Get references to the input and button elements
         const searchInput = document.getElementById('search-input');
         const searchButton = document.getElementById('search-button');
@@ -237,6 +350,6 @@
             }
         });
     </script>
-</footer>
+        </footer>
 
-</html>
+    </html>

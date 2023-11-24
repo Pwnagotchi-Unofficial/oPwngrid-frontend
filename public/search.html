@@ -97,10 +97,14 @@
                             document.getElementById("countryOfOrigin").innerText =
                                 `${regionNames.of(data.country)}`;
                             document.getElementById("pwnedNetworks").innerText = `${data.amount}`;
-                            document.getElementById("aiEpochsLived").innerText =
-                                `${data.data.brain.epochs_lived}`;
-                            document.getElementById("aiEpochsTrained").innerText =
-                                `${data.data.brain.epochs_trained}`;
+                            if (data.data.ai == false) {
+                                document.getElementById("aiEpochsLived").innerText =`AI Disabled`;
+                                document.getElementById("aiEpochsTrained").innerText =`AI Disabled`;
+                            } else {
+                                document.getElementById("aiEpochsLived").innerText =`${data.data.brain.epochs_lived}`;
+                                document.getElementById("aiEpochsTrained").innerText =`${data.data.brain.epochs_trained}`;
+                            }
+
 
                         } 
                         

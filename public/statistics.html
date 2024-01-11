@@ -122,22 +122,22 @@
       $.get(`https://api.opwngrid.xyz/api/statistics/unitsByCountry`, function (data) {
         const countryChart = document.getElementById('countryChart');
         //FORMAT DATA
-        country = []
-        amount = []
+        Ucountry = []
+        Uamount = []
 
         data.forEach(element => {
           countryS = regionNames.of(element.country);
-          country.push(countryS);
-          amount.push(element.units);
+          Ucountry.push(countryS);
+          Uamount.push(element.units);
         });
 
         new Chart(countryChart, {
           type: 'bar',
           data: {
-            labels: days,
+            labels: Ucountry,
             datasets: [{
               label: '# of units created per country',
-              data: amount,
+              data: Uamount,
               borderWidth: 1
             }]
           },

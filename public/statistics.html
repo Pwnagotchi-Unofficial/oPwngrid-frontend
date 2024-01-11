@@ -116,6 +116,34 @@
         });
 
       })
+      
+      $.get(`https://api.opwngrid.xyz/api/statistics/unitsByCountry`, function (data) {
+        const countryChart = document.getElementById('countryChart');
+        //FORMAT DATA
+        country = []
+        amount = []
+
+        data.forEach(element => {
+          countryS = regionNames.of(element.country);
+          country.push(countryS);
+          amount.push(element.units);
+        });
+
+        new Chart(countryChart, {
+          type: 'bar',
+          data: {
+            labels: days,
+            datasets: [{
+              label: '# of units created per country',
+              data: amount,
+              borderWidth: 1
+            }]
+          },
+        });
+
+      })
+
+
     })
   </script>
 </head>
@@ -187,8 +215,18 @@
     <div class="row">
       <div class="col">
         <canvas id="unitsChart"></canvas>
+        <span style="padding: 10px;"></span>
       </div>
     </div>
+
+    <div class="row">
+      <div class="col">
+        <canvas id="countryChart"></canvas>
+      </div>
+    </div>
+
+
+
   </div>
 </body>
 

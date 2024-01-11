@@ -19,7 +19,9 @@
     // This is where most scripting will happen to get chart data and headers
     // Client side will do most of the formatting of data where the server will only do updates to its data every 10 minutes, this will decrease the work of the server - this doesnt actually happen it updates each refresh
     $(document).ready(function () {
-
+      let regionNames = new Intl.DisplayNames(['en'], {
+        type: 'region'
+      });
       $.get(`https://api.opwngrid.xyz/api/statistics/apsByDay?days=356`, function (data) {
         const APsChart = document.getElementById('APsChart');
         //FORMAT DATA

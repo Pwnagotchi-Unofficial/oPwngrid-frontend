@@ -54,6 +54,12 @@
                     return Math.round(elapsed / msPerDay) + ` days ago`
                 }
             } else if (elapsed < msPerYear) {
+                if (Math.round(elapsed / msPerDay) == 1) {
+                    return Math.round(elapsed / msPerDay) + ` day ago`
+                } else {
+                    return Math.round(elapsed / msPerDay) + ` days ago`
+                }
+
                 return 'about ' + Math.round(elapsed / msPerMonth) + ' months ago';
             } else {
                 if (Math.round(elapsed / msPerYear) == 1) {

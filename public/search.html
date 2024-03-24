@@ -65,11 +65,41 @@
         }
 
         $(document).ready(function () {
+            // sets countries on adv search
+            $.get("https://api.opwngrid.xyz/api/v1/units/countries",function (data) {
+                let regionNames = new Intl.DisplayNames(['en'], {
+                        type: 'region'
+                });
+                data.forEach(element => { 
+                    let template = `<option value="${element}">${regionNames.of(element)}</option>`
+                    NameTableBd.insertAdjacentHTML('beforeend', template)
+                })
+            })
+
+
+
 
             document.getElementById("sByNameBtn").onclick = function () { 
                 const NameTableBd = document.getElementById("sUnitsFound")
                 // called when search by name button is pressed, handles creation of table elements
                 url = "https://api.opwngrid.xyz/api/v1/search/byName/" + document.getElementById("sByNameData").value
+                console.log(url)
+                NameTableBd.innerHTML = ""
+                $.get(url,
+                    function (data) {
+                        data.forEach(element => { 
+                            let template = `<tr><td><a href="/search/${element.identity}">${element.name}</a></td><td>${element.identity}</td><td>${element.country}</td></tr>`
+                            NameTableBd.insertAdjacentHTML('beforeend', template)
+                        })
+                    })
+            };
+
+            
+            document.getElementById("sByCountryBtn").onclick = function () { 
+                const NameTableBd = document.getElementById("sUnitsFound")
+                let country = document.getElementById("sCountries").option
+                // called when search by name button is pressed, handles creation of table elements
+                url = "https://api.opwngrid.xyz/api/v1/units/byCountry/" + document.getElementById("sByNameData").value + "?country=" + country
                 console.log(url)
                 data = [{"name":"t"},{"name":"t2"}]
                 NameTableBd.innerHTML = ""

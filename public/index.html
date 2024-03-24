@@ -63,6 +63,15 @@
                     //console.log(data)
                 })
             });
+            // add notices
+            $.get("https://api.opwngrid.xyz/api/v1/notices", function (data) {
+                data = data[data.length - 1]
+                if (data) {
+
+                document.getElementById("noticeString").innerHTML = `<b>${data.date}</b> ${data.info} - ${data.reporter}`;
+            }
+            });
+
             $.get("https://api.opwngrid.xyz/api/v1/recent", function (data3) {
                 let regionNames = new Intl.DisplayNames(['en'], {
                     type: 'region'
@@ -183,6 +192,12 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text" id="landString"></p>
+                    </div>
+                    <div class="card-header bg-warning text-danger">
+                        Notice
+                    </div>
+                    <div class="card-body" id="noticeBox">
+                        <p class="card-text" id="NoticeString">Up to date</p>
                     </div>
                 </div>
             </div>

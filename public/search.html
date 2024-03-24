@@ -97,7 +97,7 @@
             
             document.getElementById("sByCountryBtn").onclick = function () { 
                 const NameTableBd = document.getElementById("sUnitsFound")
-                let country = document.getElementById("sCountries").option
+                let country = document.getElementById("sCountries").value
                 // called when search by name button is pressed, handles creation of table elements
                 url = "https://api.opwngrid.xyz/api/v1/units/byCountry/" + document.getElementById("sByNameData").value + "?country=" + country
                 console.log(url)
@@ -285,7 +285,7 @@
                     <form id="search-form" class="form-inline"
                     style="margin-block-end: 0em;">
                     <div class="input-group">
-                        <select name="" id="sByCountrySel"></select>
+                        <select name="" class="form-select" id="sByCountrySel"></select>
                         <button type="button" id="sByCountryBtn"
                             class="btn btn-primary">Search</button>
                     </div>

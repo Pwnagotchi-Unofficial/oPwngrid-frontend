@@ -83,7 +83,6 @@
                 const NameTableBd = document.getElementById("sUnitsFound")
                 // called when search by name button is pressed, handles creation of table elements
                 url = "https://api.opwngrid.xyz/api/v1/search/byName/" + document.getElementById("sByNameData").value
-                console.log(url)
                 NameTableBd.innerHTML = ""
                 $.get(url,
                     function (data) {
@@ -100,18 +99,11 @@
                 let country = document.getElementById("sByCountrySel").value
                 // called when search by name button is pressed, handles creation of table elements
                 url = "https://api.opwngrid.xyz/api/v1/units/byCountry/" + document.getElementById("sByNameData").value + "?country=" + country
-                console.log(url)
-                data = [{"name":"t"},{"name":"t2"}]
                 NameTableBd.innerHTML = ""
-                data.forEach(element => { 
-                            let template = `<tr><td><a href="/search/${element.identity}">${element.name}</td><td>${element.identity}</td><td>${element.country}</td></tr>`
-                            NameTableBd.insertAdjacentHTML('beforeend', template)
-                        })
                 $.get(url,
                     function (data) {
-                        
                         data.forEach(element => { 
-                            let template = `<tr><td>${element.name}</td><td>${element.identity}</td><td>${element.country}</td></tr>`
+                            let template = `<tr><td><a href="/search/${element.identity}">${element.name}</a></td><td>${element.identity}</td><td>${element.country}</td></tr>`
                             NameTableBd.insertAdjacentHTML('beforeend', template)
                         })
                     })

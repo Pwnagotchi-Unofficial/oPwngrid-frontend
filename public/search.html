@@ -129,50 +129,51 @@
                             let regionNames = new Intl.DisplayNames(['en'], {
                                 type: 'region'
                             });
-                            //data.data = JSON.parse(data.data)
+
+
+                            //set name and face if exists
                             if (data.name && data.data.advertisement) {
-                                document.getElementById("userStringName").innerText =
-                                    `${data.data.advertisement.face} \| ${data.name}`;
+                                if (data.name.includes("/custom-faces/")) {
+                                    document.getElementById("userStringName").innerText =
+                                    `${data.data.advertisement.face} \| ( ⚆_⚆)`;
+                                }
+                                
                             } else if (data.name) {
                                 document.getElementById("userStringName").innerText = `${data.name}`
                             }
 
+                            //set created at
                             let dateCreated = new Date(data.created_at);
                             let MsCreatedAt = dateCreated.getTime()
-
                             let now = new Date()
                             let timeNow = now.getTime()
-                            
                             document.getElementById("createdAt").innerText =
                                     `${timeDifference(timeNow, MsCreatedAt)}`;
                             document.getElementById("countryOfOrigin").innerText =
                                     `${regionNames.of(data.country)}`;
                             document.getElementById("pwnedNetworks").innerText = `${data.amount}`;
-                            
-                            if (data.updated_at && data.data.brain) {
+
+                            // set updated at
+                            if (data.updated_at) {
                                 let dateUpdated = new Date(data.updated_at);
-
-                                
                                 let MsUpdatedAt = dateUpdated.getTime()
-
-                                    document.getElementById("updatedAt").innerText =
+                                document.getElementById("updatedAt").innerText =
                                     `${timeDifference(timeNow, MsUpdatedAt)}`;
-                                
-                                
-                                if (data.data.ai == false) {
-                                    document.getElementById("aiEpochsLived").innerText =`AI Disabled`;
-                                    document.getElementById("aiEpochsTrained").innerText =`AI Disabled`;
-                                } else {
-                                    document.getElementById("aiEpochsLived").innerText =`${data.data.brain.epochs_lived}`;
-                                    document.getElementById("aiEpochsTrained").innerText =`${data.data.brain.epochs_trained}`;
+                            }
+
+                            // set ai data
+                            if (data.data.ai == false) {
+                                document.getElementById("aiEpochsLived").innerText =`AI Disabled`;
+                                document.getElementById("aiEpochsTrained").innerText =`AI Disabled`;
+                            } else {
+                                if (data.data.brain) {
+                                document.getElementById("aiEpochsLived").innerText =`${data.data.brain.epochs_lived}`;
+                                document.getElementById("aiEpochsTrained").innerText =`${data.data.brain.epochs_trained}`;
                                 }
+                            }
 
-
-                            } 
-                            
-                            
+                            //set session data
                             if (data.data.session) {
-                                //set session data
                                 document.getElementById("duration").innerText =
                                     `${data.data.session.duration}`;
                                 document.getElementById("peers").innerText =
@@ -191,33 +192,18 @@
                                     `${data.data.session.avg_reward}`;
 
 
-                            } else {
-
-                                let dateCreated = new Date(data.created_at);
-
-                                let MsCreatedAt = dateCreated.getTime()
-
-                                let now = new Date()
-                                let timeNow = now.getTime()
-
-                                document.getElementById("createdAt").innerText =
-                                    `${timeDifference(timeNow, MsCreatedAt)}`;
-                                document.getElementById("countryOfOrigin").innerText =
-                                    `${regionNames.of(data.country)}`;
-                                document.getElementById("pwnedNetworks").innerText = `${data.amount}`;
-
                             }
-                                //build data
-                                document.getElementById("version").innerText =
-                                    `${data.data.version}`;
-                                if (data.data.build) {
-                                    document.getElementById("build").innerText =
-                                        `${data.data.build}`;
-                                }
-                                if (data.data.uname) {
-                                    document.getElementById("uname").innerText =
-                                        `${data.data.uname}`;
-                                }
+                            //build data
+                            document.getElementById("version").innerText =
+                                `${data.data.version}`;
+                            if (data.data.build) {
+                                document.getElementById("build").innerText =
+                                    `${data.data.build}`;
+                            }
+                            if (data.data.uname) {
+                                document.getElementById("uname").innerText =
+                                    `${data.data.uname}`;
+                            }
 
                             document.getElementById("contactStringID").innerHTML = `${data.identity}`
                         } else {

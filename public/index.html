@@ -93,11 +93,17 @@
 
                     let aHref = `<a href="/search/${data3[i].identity}">${data3[i].name}</a>`
 
+                    let face = data3[i].data.advertisement.face
+
+                    if (face.includes("/custom-faces/")) {
+                        face = "( ⚆_⚆)"
+                    }
+                    
                     if (data3[i].data && data3[i].data.advertisement) {
                         var tableRowData = `
                             <tr>
                                 <td>
-                                    ${data3[i].data.advertisement.face} ${aHref}
+                                    ${face} ${aHref}
                                 </td>
                                 <td>
                                     ${timeDifference(timeNow, MsCreatedAt)}

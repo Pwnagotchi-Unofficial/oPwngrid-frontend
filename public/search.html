@@ -137,24 +137,27 @@
                                 document.getElementById("userStringName").innerText = `${data.name}`
                             }
 
+                            let dateCreated = new Date(data.created_at);
+                            
 
+                            let now = new Date()
+                            let timeNow = now.getTime()
+
+                            
+                            document.getElementById("createdAt").innerText =
+                                    `${timeDifference(timeNow, MsCreatedAt)}`;
+                            document.getElementById("countryOfOrigin").innerText =
+                                    `${regionNames.of(data.country)}`;
 
                             if (data.updated_at && data.data.brain) {
-                                let dateCreated = new Date(data.created_at);
                                 let dateUpdated = new Date(data.updated_at);
 
                                 let MsCreatedAt = dateCreated.getTime()
                                 let MsUpdatedAt = dateUpdated.getTime()
 
-                                let now = new Date()
-                                let timeNow = now.getTime()
-
-                                document.getElementById("createdAt").innerText =
-                                    `${timeDifference(timeNow, MsCreatedAt)}`;
                                     document.getElementById("updatedAt").innerText =
                                     `${timeDifference(timeNow, MsUpdatedAt)}`;
-                                document.getElementById("countryOfOrigin").innerText =
-                                    `${regionNames.of(data.country)}`;
+                                
                                 document.getElementById("pwnedNetworks").innerText = `${data.amount}`;
                                 if (data.data.ai == false) {
                                     document.getElementById("aiEpochsLived").innerText =`AI Disabled`;

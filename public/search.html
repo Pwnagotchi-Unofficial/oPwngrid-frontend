@@ -85,17 +85,21 @@
                                 type: 'region'
                             });
 
-
+                            let name = data.name
+                            let face
                             //set name and face if exists
-                            if (data.name && data.data.advertisement) {
+                            if (data.data.advertisement.face) {
                                 if (data.name.includes("/custom-faces/")) {
-                                    document.getElementById("userStringName").innerText =
-                                    `${data.data.advertisement.face} \| ( ⚆_⚆)`;
+                                    face = `( ⚆_⚆)`;
+                                } else {
+                                    face = data.data.advertisement.face
                                 }
-                                
-                            } else if (data.name) {
-                                document.getElementById("userStringName").innerText = `${data.name}`
                             }
+
+                            let faceStr = `${face} \| ${name}`
+
+                            document.getElementById("userStringName").innerText = `${faceStr}`
+
 
                             //set created at
                             let dateCreated = new Date(data.created_at);

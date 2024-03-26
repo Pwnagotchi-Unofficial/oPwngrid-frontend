@@ -84,25 +84,9 @@
                             let regionNames = new Intl.DisplayNames(['en'], {
                                 type: 'region'
                             });
-
-                            let name = data.name
-                            let face
-                            //set name and face if exists
-                            if (data.data.advertisement) {
-                                if (data.data.advertisement.face.includes("/custom-faces/")) {
-                                    face = " \| ( ⚆_⚆)";
-                                } else {
-                                    if (data.data.advertisement.face) {
-                                        face =  " \| "+ data.data.advertisement.face
-                                    } else {
-                                        face = ""
-                                    }
-                                }
-                            }
-
-                            let faceStr = `${name}${face}`
-
-                            document.getElementById("userStringName").innerText = `${faceStr}`
+                            
+                            //set face and name
+                            document.getElementById("userStringName").innerText = `${getFaceStr(data,false)}`
 
 
                             //set created at

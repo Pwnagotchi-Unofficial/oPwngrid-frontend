@@ -41,3 +41,31 @@ function timeDifference(current, previous) {
         }
     }
 }
+
+function getFaceStr(data,href) {
+
+    let name
+
+    let face
+
+    if (href) {
+        name = `<a href="${data.identity}">${data.name}</a>`
+    } else {
+        name = data.name
+    }
+    //set name and face if exists
+    if (data.data.advertisement) {
+                if (data.data.advertisement.face.includes("/custom-faces/")) {
+                    face = " \| ( ⚆_⚆)";
+                } else {
+                    if (data.data.advertisement.face) {
+                        face =  " \| "+ data.data.advertisement.face
+                    } else {
+                        face = ""
+                    }
+                }
+    } else {
+        face = ""
+    }
+    return `${name}${face}`
+}

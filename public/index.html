@@ -58,25 +58,24 @@
                     let now = new Date()
                     let timeNow = now.getTime()
 
-                    let aHref = `<a href="/search/${data3[i].identity}">${data3[i].name}</a>`
-
+                    let name = data.name
                     let face
-
-                    if (data3[i].data.advertisement && data3[i].data.advertisement.face) {
-                        face = data3[i].data.advertisement.face
-                        if (face.includes("/custom-faces/")) {
-                            face = "( ⚆_⚆)"
+                    //set name and face if exists
+                    if (data.data.advertisement.face) {
+                        if (data.name.includes("/custom-faces/")) {
+                            face = `( ⚆_⚆)`;
+                        } else {
+                            face = data.data.advertisement.face
                         }
                     }
-                    let faceName = `${aHref}`
-                    if (face) {
-                        let faceName = `${face} ${aHref}`
 
-                    }
+                    let faceStr = `${name} \| ${face}`
+
+                    
                     let tableRowData = `
                         <tr>
                             <td>
-                                ${faceName} 
+                                ${faceStr} 
                             </td>
                             <td>
                                 ${timeDifference(timeNow, MsCreatedAt)}

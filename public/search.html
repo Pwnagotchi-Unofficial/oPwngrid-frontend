@@ -26,21 +26,31 @@
 
         <script>
         $(document).ready(function () {
+            const params = new URLSearchParams(document.location.search);
+
+
             // sets countries on adv search
             $.get("https://api.opwngrid.xyz/api/v1/units/countries",function (data) {
                 let regionNames = new Intl.DisplayNames(['en'], {
                         type: 'region'
                 });
-                data.forEach(element => { 
+                data.forEach(element => {
                     let template = `<option value="${element}">${regionNames.of(element)}</option>`
                     document.getElementById("sByCountrySel").insertAdjacentHTML('beforeend', template)
                 })
             })
+            if (params.get("c")) {
+                selectElement('sByCountrySel', params.get("c"));
+            }
+            
 
+            
+            if (params.get("n")){
+                document.getElementById("sByNameData").value = params.get("n")
+                searchforName()
+            }
 
-
-
-            document.getElementById("sByNameBtn").onclick = function () { 
+            function searchforName() { 
                 const NameTableBd = document.getElementById("sUnitsFound")
                 // called when search by name button is pressed, handles creation of table elements
                 url = "https://api.opwngrid.xyz/api/v1/search/byName/" + document.getElementById("sByNameData").value
@@ -53,6 +63,8 @@
                         })
                     })
             };
+
+            document.getElementById("sByNameBtn").onclick = searchforName
 
             
             document.getElementById("sByCountryBtn").onclick = function () { 

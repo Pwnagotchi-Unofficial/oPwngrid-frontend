@@ -62,7 +62,7 @@
 
                     let face
 
-                    if (data3[i].data.advertisement.face) {
+                    if (data3[i].data.advertisement && data3[i].data.advertisement.face) {
                         face = data3[i].data.advertisement.face
                         if (face.includes("/custom-faces/")) {
                             face = "( ⚆_⚆)"

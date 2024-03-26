@@ -57,7 +57,9 @@
             function searchforName() { 
                 const NameTableBd = document.getElementById("sUnitsFound")
                 // called when search by name button is pressed, handles creation of table elements
-                url = "https://api.opwngrid.xyz/api/v1/search/byName/" + document.getElementById("sByNameData").value
+                let name = document.getElementById("sByNameData").value
+                url = "https://api.opwngrid.xyz/api/v1/search/byName/" + name
+                params.set("n", name)
                 NameTableBd.innerHTML = ""
                 $.get(url,
                     function (data) {
@@ -73,6 +75,7 @@
             document.getElementById("sByCountryBtn").onclick = function () { 
                 const NameTableBd = document.getElementById("sUnitsFound")
                 let country = document.getElementById("sByCountrySel").value
+                params.set("c",country)
                 // called when search by name button is pressed, handles creation of table elements
                 url = "https://api.opwngrid.xyz/api/v1/units/byCountry/" + document.getElementById("sByNameData").value + "?country=" + country
                 NameTableBd.innerHTML = ""

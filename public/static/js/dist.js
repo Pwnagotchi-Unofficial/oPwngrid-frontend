@@ -49,7 +49,7 @@ function getFaceStr(data,href) {
     let face
 
     if (href) {
-        name = `<a href="${data.identity}">${data.name}</a>`
+        name = `<a href="/search/${data.identity}">${data.name}</a>`
     } else {
         name = data.name
     }

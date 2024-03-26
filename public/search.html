@@ -36,7 +36,7 @@
                 });
                 data.forEach(element => {
                     let sel = ""
-                    if (params.get("c")) {
+                    if (params.get("c") == element) {
                         sel = "selected"
                     }
                     let template = `<option value="${element}"${sel}>${regionNames.of(element)}</option>`

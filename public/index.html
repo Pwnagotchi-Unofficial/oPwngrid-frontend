@@ -55,49 +55,41 @@
                     let dateUpdated = new Date(data3[i].updated_at);
                     let MsCreatedAt = dateCreated.getTime()
 
-                    // This example takes 2 seconds to run
                     let now = new Date()
                     let timeNow = now.getTime()
 
                     let aHref = `<a href="/search/${data3[i].identity}">${data3[i].name}</a>`
 
-                    
+                    let face
 
-                    if (data3[i].data && data3[i].data.advertisement) {
-                        let face = data3[i].data.advertisement.face
+                    if (data3[i].data.advertisement) {
+                        let face = data3[i].data.advertisement.face;
 
                         if (face.includes("/custom-faces/")) {
                             face = "( ⚆_⚆)"
                         }
-                        let tableRowData = `
-                            <tr>
-                                <td>
-                                    ${face} ${aHref}
-                                </td>
-                                <td>
-                                    ${timeDifference(timeNow, MsCreatedAt)}
-                                </td>
-                                <td>
-                                    ${regionNames.of(data3[i].country)}
-                                </td>
-                            </tr>
-                        `;
-
-                    } else {
-                        let tableRowData = `
-                            <tr>
-                                <td>
-                                    ${aHref}
-                                </td>
-                                <td>
-                                    ${timeDifference(timeNow, MsCreatedAt)}
-                                </td>
-                                <td>
-                                    ${regionNames.of(data3[i].country)}
-                                </td>
-                            </tr>
-                        `;
                     }
+
+                    if (face) {
+                        let faceName = `${face} ${aHref}`
+                    } else{
+                        let faceName = `${aHref}`
+
+                    }
+
+                    let tableRowData = `
+                        <tr>
+                            <td>
+                                ${faceName} 
+                            </td>
+                            <td>
+                                ${timeDifference(timeNow, MsCreatedAt)}
+                            </td>
+                            <td>
+                                ${regionNames.of(data3[i].country)}
+                            </td>
+                        </tr>
+                    `;
 
                     let appendRowToTable = $("#recentPwny").append(tableRowData);
                 }

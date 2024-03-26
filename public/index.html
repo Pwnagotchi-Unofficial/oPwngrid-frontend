@@ -61,14 +61,15 @@
 
                     let aHref = `<a href="/search/${data3[i].identity}">${data3[i].name}</a>`
 
-                    let face = data3[i].data.advertisement.face
-
-                    if (face.includes("/custom-faces/")) {
-                        face = "( ⚆_⚆)"
-                    }
+                    
 
                     if (data3[i].data && data3[i].data.advertisement) {
-                        var tableRowData = `
+                        let face = data3[i].data.advertisement.face
+
+                        if (face.includes("/custom-faces/")) {
+                            face = "( ⚆_⚆)"
+                        }
+                        let tableRowData = `
                             <tr>
                                 <td>
                                     ${face} ${aHref}
@@ -83,7 +84,7 @@
                         `;
 
                     } else {
-                        var tableRowData = `
+                        let tableRowData = `
                             <tr>
                                 <td>
                                     ${aHref}

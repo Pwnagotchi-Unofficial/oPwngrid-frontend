@@ -35,13 +35,17 @@
                         type: 'region'
                 });
                 data.forEach(element => {
-                    let template = `<option value="${element}">${regionNames.of(element)}</option>`
+                    let sel = ""
+                    if (params.get("c")) {
+                        sel = "selected"
+                    }
+                    let template = `<option value="${element}"${sel}>${regionNames.of(element)}</option>`
                     document.getElementById("sByCountrySel").insertAdjacentHTML('beforeend', template)
                 })
             })
-            if (params.get("c")) {
-                selectElement('sByCountrySel', params.get("c"));
-            }
+            //if (params.get("c")) {
+            //    selectElement('sByCountrySel', );
+            //}
             
 
             
@@ -63,7 +67,6 @@
                         })
                     })
             };
-
             document.getElementById("sByNameBtn").onclick = searchforName
 
             

@@ -62,11 +62,11 @@
 
                     let face
 
-                    if (data3[i].data.advertisement) {
-                        let face = data3[i].data.advertisement.face;
-
+                    if (data3[i].data.advertisement.face) {
                         if (face.includes("/custom-faces/")) {
                             face = "( ⚆_⚆)"
+                        } else {
+                            face = data3[i].data.advertisement.face
                         }
                     }
                     let faceName = `${aHref}`

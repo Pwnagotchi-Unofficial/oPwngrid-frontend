@@ -89,14 +89,18 @@
                             let face
                             //set name and face if exists
                             if (data.data.advertisement) {
-                                if (data.name.includes("/custom-faces/")) {
-                                    face = `( ⚆_⚆)`;
+                                if (data.data.advertisement.face.includes("/custom-faces/")) {
+                                    face = " \| ( ⚆_⚆)";
                                 } else {
-                                    face = data.data.advertisement.face
+                                    if (data.data.advertisement.face) {
+                                        face =  " \| "+ data.data.advertisement.face
+                                    } else {
+                                        face = ""
+                                    }
                                 }
                             }
 
-                            let faceStr = `${name} \| ${face}`
+                            let faceStr = `${name}${face}`
 
                             document.getElementById("userStringName").innerText = `${faceStr}`
 

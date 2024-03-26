@@ -62,14 +62,18 @@
                     let face
                     //set name and face if exists
                     if (data3[i].data.advertisement) {
-                        if (data3[i].name.includes("/custom-faces/")) {
-                            face = `( ⚆_⚆)`;
-                        } else {
-                            face = data3[i].data.advertisement.face
-                        }
-                    }
+                                if (data3[i].data.advertisement.face.includes("/custom-faces/")) {
+                                    face = " \| ( ⚆_⚆)";
+                                } else {
+                                    if (data3[i].data.advertisement.face) {
+                                        face =  " \| "+ data3[i].data.advertisement.face
+                                    } else {
+                                        face = ""
+                                    }
+                                }
+                            }
 
-                    let faceStr = `${name} \| ${face}`
+                            let faceStr = `${name}${face}`
 
                     
                     let tableRowData = `

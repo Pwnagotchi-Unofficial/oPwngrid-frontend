@@ -60,6 +60,7 @@
                 let name = document.getElementById("sByNameData").value
                 url = "https://api.opwngrid.xyz/api/v1/search/byName/" + name
                 params.set("n", name)
+                document.location.search = params.toString()
                 NameTableBd.innerHTML = ""
                 $.get(url,
                     function (data) {
@@ -76,6 +77,7 @@
                 const NameTableBd = document.getElementById("sUnitsFound")
                 let country = document.getElementById("sByCountrySel").value
                 params.set("c",country)
+                document.location.search = params.toString()
                 // called when search by name button is pressed, handles creation of table elements
                 url = "https://api.opwngrid.xyz/api/v1/units/byCountry/" + document.getElementById("sByNameData").value + "?country=" + country
                 NameTableBd.innerHTML = ""

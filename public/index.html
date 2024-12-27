@@ -76,7 +76,7 @@
                 }
             });
 
-            $.get("https://api.opwngrid.xyz/api/v1/recent", function (RecentPingData) {
+            $.get("https://api.opwngrid.xyz/api/v1/recent/Ping", function (RecentPingData) {
                 let regionNames = new Intl.DisplayNames(['en'], {
                     type: 'region'
                 });
@@ -107,7 +107,7 @@
                         </tr>
                     `;
 
-                    let appendRowToTable = $("#recentPwny").append(tableRowData);
+                    let appendRowToTable = $("#recentContactPwny").append(tableRowData);
                 }
             });
         });

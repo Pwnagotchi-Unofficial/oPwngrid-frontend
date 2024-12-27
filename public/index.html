@@ -75,6 +75,41 @@
                     let appendRowToTable = $("#recentPwny").append(tableRowData);
                 }
             });
+
+            $.get("https://api.opwngrid.xyz/api/v1/recent", function (RecentPingData) {
+                let regionNames = new Intl.DisplayNames(['en'], {
+                    type: 'region'
+                });
+                let recentDiv = document.getElementById("recent");
+                for (let i = 0; i <= RecentPingData.length - 1; i++) {
+                    let datePinged = new Date(RecentPingData[i].updated_at);
+
+                    datePinged.toLocaleString('default', {
+                        timeZoneName: 'short'
+                    });
+
+                    let MsPingedAt = datePinged.getTime()
+
+                    let now = new Date()
+                    let timeNow = now.getTime()
+                    
+                    let tableRowData = `
+                        <tr>
+                            <td>
+                                ${getFaceStr(RecentPingData[i], true)} 
+                            </td>
+                            <td>
+                                ${timeDifference(timeNow, MsPingedAt)}
+                            </td>
+                            <td>
+                                ${regionNames.of(RecentPingData[i].country)}
+                            </td>
+                        </tr>
+                    `;
+
+                    let appendRowToTable = $("#recentPwny").append(tableRowData);
+                }
+            });
         });
     </script>
 </head>
@@ -121,7 +156,7 @@
         <!-- First row, containing only the header -->
         <div class="row">
             <div class="col text-center">
-                <h1>oPwnGRID - Homepage</h1>
+                <h1>Welcome to oPwnGrid.</h1>
             </div>
         </div>
 
@@ -129,8 +164,15 @@
         <div class="row">
             <div class="col-6">
                 <p>
-                    Welcome to Opwngrid. A remake of the pwnagotchi API that is faster, better, cooler. Have a look around. Let us know if encounter any errors <a href="https://github.com/rai68/oPwngrid-server/issues">here</a>
+                    oPwngrid is a project that aims to provide a gamified way to compete with other Pwnagotchi users.
+                    
+                    
                 </p>
+                <p>
+                    Let us know if you have any suggestions or issues <a href="https://github.com/rai68/oPwngrid-server/issues">here</a>
+                </p>
+                <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support oPwnGrid on Ko-fi', '#72a4f2', 'C0C7U385H');kofiwidget2.draw();</script> 
+
             </div>
 
             <div class="col-6">
@@ -164,6 +206,20 @@
                         </tr>
                     </thead>
                     <tbody id="recentPwny">
+
+                    </tbody>
+                </table>
+
+                <h2>Last 10 active Pwns!</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Pwny's name</th>
+                            <th scope="col">Time of last ping</th>
+                            <th scope="col">Country of origin</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentContactPwny">
 
                     </tbody>
                 </table>
